@@ -28,6 +28,6 @@ ActiveRecord::Schema.define(:version => 20130909080900) do
     t.datetime "updated_at", :null => false
   end
 
-  add_foreign_key "messages", "topics", name: "messages_topic_id_fk"
+  add_foreign_key "messages", "topics", name: "messages_topic_id_fk", dependent: :delete
 
 end
