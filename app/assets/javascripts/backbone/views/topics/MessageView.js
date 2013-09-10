@@ -2,9 +2,10 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'bootstrap',
   'text!templates/topics/messageTemplate.html',
   'models/topic/MessageModel'
-], function($, _, Backbone, messageTemplate, MessageModel){
+], function($, _, Backbone, Bootstrap, messageTemplate, MessageModel){
   var MessageView = Backbone.View.extend({
     tagName: 'li',
     events: {

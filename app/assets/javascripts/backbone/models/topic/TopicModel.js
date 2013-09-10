@@ -1,7 +1,8 @@
 define([
   'underscore',
-  'backbone'
-], function(_, Backbone){
+  'backbone',
+  'bootstrap'
+], function(_, Backbone, Bootstrap){
   var TopicModel = Backbone.Model.extend({
     urlRoot: '/topics'
   });

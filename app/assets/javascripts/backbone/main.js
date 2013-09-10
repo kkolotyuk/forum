@@ -3,6 +3,7 @@ require.config({
     jquery: '../libs/jquery/jquery',
     underscore: '../libs/underscore/underscore',
     backbone: '../libs/backbone/backbone',
+    bootstrap: '../libs/bootstrap/bootstrap',
     templates: 'templates'
   }
 

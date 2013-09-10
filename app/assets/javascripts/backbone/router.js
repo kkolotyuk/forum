@@ -3,11 +3,12 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'bootstrap',
   'views/topics/TopicListView',
   'views/topics/TopicView',
   'views/topics/MessageListView',
   'models/topic/TopicModel'
-], function($, _, Backbone, TopicListView, TopicView, MessageListView, TopicModel){
+], function($, _, Backbone, Bootstrap, TopicListView, TopicView, MessageListView, TopicModel){
   var AppRouter = Backbone.Router.extend({
     routes: {
       // Define some URL routes

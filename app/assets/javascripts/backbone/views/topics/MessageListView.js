@@ -2,12 +2,13 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'bootstrap',
   'models/topic/MessageModel',
   'collections/messages',
   'views/topics/MessageView',
   'text!templates/topics/titleTemplate.html',
   'text!templates/topics/messagesListTemplate.html'
-], function($, _, Backbone, MessageModel, MessagesCollection, MessageView, titleTemplate, messagesListTemplate){
+], function($, _, Backbone, Bootstrap, MessageModel, MessagesCollection, MessageView, titleTemplate, messagesListTemplate){
   var MessageListView = Backbone.View.extend({
     el: $("#container"),
     events: {

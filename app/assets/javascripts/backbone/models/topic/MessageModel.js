@@ -1,7 +1,8 @@
 define([
   'underscore',
-  'backbone'
-], function(_, Backbone){
+  'backbone',
+  'bootstrap'
+], function(_, Backbone, Bootstrap){
   var MessageModel = Backbone.Model.extend({
     urlRoot: '/messages'
   });

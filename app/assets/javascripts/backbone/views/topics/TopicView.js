@@ -2,9 +2,10 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'bootstrap',
   'text!templates/topics/topicTemplate.html',
   'models/topic/TopicModel'
-], function($, _, Backbone, topicTemplate, TopicModel){
+], function($, _, Backbone, Bootstrap, topicTemplate, TopicModel){
   var TopicView = Backbone.View.extend({
     tagName: 'li',
     events: {

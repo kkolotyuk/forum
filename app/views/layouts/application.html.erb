@@ -4,12 +4,13 @@
   <title>Forum</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%#= javascript_include_tag "application" %>
+  <link href="assets/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen">
   <script data-main="assets/backbone/main" src="assets/libs/require/require.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-    <%= yield %>
+    <div class="container"><%= yield %></div>
 
 </body>
 </html>

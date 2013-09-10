@@ -2,13 +2,14 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'bootstrap',
   'collections/topics',
   'text!templates/topics/topicsListTemplate.html',
   'text!templates/topics/topicTemplate.html',
   'views/topics/TopicView',
   'models/topic/TopicModel',
   'text!templates/topics/titleTemplate.html'
-], function($, _, Backbone, TopicsCollection, topicsListTemplate, topicTemplate, TopicView, TopicModel, titleTemplate){
+], function($, _, Backbone, Bootstrap, TopicsCollection, topicsListTemplate, topicTemplate, TopicView, TopicModel, titleTemplate){
   var TopicListView = Backbone.View.extend({
     el: $("#container"),
     events: {
