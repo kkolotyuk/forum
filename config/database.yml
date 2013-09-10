@@ -9,7 +9,7 @@ development:
   database: forum
   pool: 5
   username: root
-  password: mysql
+  password:
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -20,7 +20,7 @@ test:
   database: forum_test
   pool: 5
   username: root
-  password: mysql
+  password:
 
 production:
   adapter: mysql2
@@ -28,4 +28,4 @@ production:
   database: forum
   pool: 5
   username: root
-  password: mysql
+  password:

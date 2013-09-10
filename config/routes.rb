@@ -1,6 +1,8 @@
 Forum::Application.routes.draw do
 
   resources :topics, except: [ :new, :edit ]
+
+  match '/' => 'topics#home'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

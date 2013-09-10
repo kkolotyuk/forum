@@ -25,4 +25,5 @@ class TopicsController < ApplicationController
     @product.destroy
     render head :no_content
   end
+
 end

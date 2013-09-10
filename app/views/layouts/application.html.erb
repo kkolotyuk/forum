@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html data-framework="backbonejs">
 <head>
   <title>Forum</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%#= javascript_include_tag "application" %>
+  <script data-main="assets/backbone/main" src="assets/libs/require/require.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+    <%= yield %>
 
 </body>
 </html>
