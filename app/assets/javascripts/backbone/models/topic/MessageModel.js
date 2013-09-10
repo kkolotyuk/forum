@@ -4,8 +4,7 @@ define([
 ], function(_, Backbone){
   var MessageModel = Backbone.Model.extend({
     urlRoot: '/message',
-    idAttribute: '_id'
+    idAttribute: 'id'
   });
-  // Return the model for the module
   return MessageModel;
 });

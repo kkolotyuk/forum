@@ -23,7 +23,8 @@ class TopicsController < ApplicationController
   def destroy
     @product = Topic.find(params[:id])
     @product.destroy
-    render head :no_content
+    #render head :no_content
+    render json: {}
   end
 
 end

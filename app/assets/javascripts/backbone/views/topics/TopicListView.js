@@ -2,7 +2,6 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  // Pull in the Collection module from above
   'collections/topics',
   'text!templates/topics/topicsListTemplate.html',
   'text!templates/topics/topicTemplate.html',
@@ -19,35 +18,37 @@ define([
     render: function(){
       $("#container").html(_.template( topicsListTemplate));
       this.collection = new TopicsCollection();
-      var t = new TopicModel({"id": 1, "title": "gg", "messages": []});
-      this.collection.add(t);
-      var models = this.collection.models;
-      for (topic_key in models) {
-        this.renderItem(models[topic_key]);
-      }
-      $('header').html(_.template( titleTemplate, { title: "All Topics" } ))
+      var _this = this;
+      var topics = this.collection.fetch({
+        success: function(topics) {
+          var models = topics.models;
+          for (topic_key in models) {
+            _this.renderItem(models[topic_key]);
+          }
+          $('header').html(_.template( titleTemplate, { title: "All Topics" } ))
+        }
+      });
+
     },
      initialize: function(){
       _.bindAll(this, "renderItem");
     },
     renderItem: function (topic) {
-      topicModel = new TopicModel();
-      topicModel.save({title: topic.get('title')}, {
-          success: function (topic) {
-              alert(topic.toJSON());
-          }
-      })
-      var topicView = new TopicView({model: topicModel});
+      //topicModel = new TopicModel();
+      var topicView = new TopicView({model: topic});
       topicView.render(topic);
       this.$el.find('ul').append(topicView.el);
     },
 
     createTopic: function () {
       var title = $("#new-topic-title").val();
-      this.collection = new TopicsCollection();
+      var _this = this;
       var topic = new TopicModel({title: title});
-      this.collection.add(topic);
-      this.renderItem(topic);
+      topic.save({title: title}, {
+        success: function(topic) {
+          _this.renderItem(topic);
+        }
+      })
     }
 
   });
