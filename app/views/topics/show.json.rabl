@@ -2,5 +2,5 @@ object @topic
 attributes :id, :title
 
 child :messages do
-  attributes :id, :content
+  extends 'messages/show'
 end

@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  respond_to :json
 
   def index
     @topics = Topic.all
@@ -21,8 +22,8 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    @product = Topic.find(params[:id])
-    @product.destroy
+    topic = Topic.find(params[:id])
+    topic.destroy
     render head :no_content
   end
 end
