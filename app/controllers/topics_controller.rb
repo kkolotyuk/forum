@@ -1,23 +1,23 @@
 class TopicsController < ApplicationController
+
   def index
     @topics = Topic.all
-    render json: @topics
   end
 
   def create
     @topic = Topic.new(params[:topic])
     @topic.save
-    render json: @topic
+    render :show
   end
 
   def show
     @topic = Topic.find(params[:id])
-    render json: @topic
   end
 
   def update
     @topic = Topic.find(params[:id])
     @topic.update_attributes(params[:topic])
+    render :show
   end
 
   def destroy
