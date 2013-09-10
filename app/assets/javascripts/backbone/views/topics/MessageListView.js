@@ -12,12 +12,9 @@ define([
       'click .create-message': 'createMessage'
     },
     initialize: function(){
-        //_.bindAll(this, 'render', 'render_message', 'on_submit');
-        //this.model.bind('change', this.render);
-        //this.model.bind('reset', this.render);
-        //this.model.bind('add:messages', this.render_message);
+        _.bindAll(this, "renderItem");
     },
-    render: function(id, topicTitle){
+    render: function(topic){
       //TODO:: get messages by id
 
 

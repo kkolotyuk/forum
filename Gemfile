@@ -26,6 +26,8 @@ gem 'thin', '~> 1.5.1'
 gem 'quiet_assets', '~> 1.0.2'
 gem "foreigner", "~> 1.5.0"
 
+gem 'rabl'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

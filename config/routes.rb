@@ -1,5 +1,7 @@
 Forum::Application.routes.draw do
 
+  resources :messages, only: [ :create, :update, :destroy ]
+
   resources :topics, except: [ :new, :edit ]
 
   match '/' => 'topics#home'
