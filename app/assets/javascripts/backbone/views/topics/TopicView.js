@@ -18,7 +18,6 @@ define([
       var _this = this;
       this.model.destroy({
         success: function (topic) {
-            alert("deleted");
             _this.el.remove();
         }}
       );

@@ -4,46 +4,47 @@ define([
   'backbone',
   'models/topic/MessageModel',
   'collections/messages',
-  'views/topics/MessageView'
-], function($, _, Backbone, MessageModel, MessagesCollection, MessageView){
+  'views/topics/MessageView',
+  'text!templates/topics/titleTemplate.html',
+  'text!templates/topics/messagesListTemplate.html'
+], function($, _, Backbone, MessageModel, MessagesCollection, MessageView, titleTemplate, messagesListTemplate){
   var MessageListView = Backbone.View.extend({
     el: $("#container"),
     events: {
       'click .create-message': 'createMessage'
     },
     initialize: function(){
-        _.bindAll(this, "renderItem");
+        //_.bindAll(this, "renderItem");
     },
     render: function(topic){
-      //TODO:: get messages by id
-
-
-      this.collection = new MessagesCollection();
-      this.collection.add({ text: "msg 1"});
-      this.collection.add({ text: "msg 2"});
+      this.$el.html(_.template( messagesListTemplate));
+      var messages = topic.toJSON().messages;
+      this.collection = new MessagesCollection(messages);
       var models = this.collection.models;
-
       for (key in models) {
-        this.addOne(models[key]);
+        this.renderItem(models[key]);
       }
-      $('h1').html('Topic ' + topicTitle)
-    },
-    render_message: function(message) {
-        var message_view = new $.forum.MessageView({model: message});
-        this.$('div.message_list').append($(message_view.render()));
+
+      $('header').html(_.template( titleTemplate, { title: 'Topic ' + topic.toJSON().title } ));
     },
 
-    addOne: function (msg) {
-      var msgView = new MessageView();
-      this.$el.find('ul').append(msgView.render(msg));
+    renderItem: function (msg) {
+      var msgView = new MessageView({model: msg});
+      msgView.render(msg);
+      this.$el.find('ul').append(msgView.el);
     },
 
     createMessage: function () {
-      var new_message = new MessageModel({text: $('#new-message-text').val()});
-      new_message.save();
+      var _this = this;
+      var text = $('#new-message-text').val();
+      var message = new MessageModel();
+      message.save({content: text}, {
+        success: function(msg) {
+          _this.renderItem(msg);
+        }
+      });
     }
 
   });
-  // Returning instantiated views can be quite useful for having "state"
   return MessageListView;
 });

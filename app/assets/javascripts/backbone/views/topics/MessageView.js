@@ -3,23 +3,25 @@ define([
   'underscore',
   'backbone',
   'text!templates/topics/messageTemplate.html',
-], function($, _, Backbone, messageTemplate){
+  'models/topic/MessageModel'
+], function($, _, Backbone, messageTemplate, MessageModel){
   var MessageView = Backbone.View.extend({
     tagName: 'li',
     events: {
       'click .remove-msg': 'removeMessage'
     },
-     initialize: function(){
-        //_.bindAll(this, 'render');
-        //this.model.bind('change', this.render);
-    },
+    model: MessageModel,
     render: function(message){
-        return _.template( messageTemplate, { message: message } );
+        $(this.el).append(_.template( messageTemplate, { message: message.toJSON() } ));
     },
     removeMessage: function (e) {
-        this.model.destroy();
+        var _this = this;
+        this.model.destroy({
+          success: function (topic) {
+              _this.el.remove();
+          }}
+        );
     }
   });
-  // Returning instantiated views can be quite useful for having "state"
   return MessageView;
 });

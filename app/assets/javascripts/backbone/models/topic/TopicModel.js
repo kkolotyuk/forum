@@ -1,13 +1,9 @@
 define([
   'underscore',
-  'backbone',
-  'models/topic/MessageModel'
-], function(_, Backbone, MessageModel){
+  'backbone'
+], function(_, Backbone){
   var TopicModel = Backbone.Model.extend({
-    urlRoot: '/topics',
-    initialize: function() {
-
-    }
+    urlRoot: '/topics'
   });
   return TopicModel;
 });

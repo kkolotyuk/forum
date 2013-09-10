@@ -16,7 +16,7 @@ define([
     },
     model: TopicModel,
     render: function(){
-      $("#container").html(_.template( topicsListTemplate));
+      this.$el.html(_.template( topicsListTemplate));
       this.collection = new TopicsCollection();
       var _this = this;
       var topics = this.collection.fetch({
@@ -25,16 +25,15 @@ define([
           for (topic_key in models) {
             _this.renderItem(models[topic_key]);
           }
-          $('header').html(_.template( titleTemplate, { title: "All Topics" } ))
+          $('header').html(_.template( titleTemplate, { title: "All Topics" } ));
         }
       });
 
     },
      initialize: function(){
-      _.bindAll(this, "renderItem");
+      //_.bindAll(this, "renderItem");
     },
     renderItem: function (topic) {
-      //topicModel = new TopicModel();
       var topicView = new TopicView({model: topic});
       topicView.render(topic);
       this.$el.find('ul').append(topicView.el);
@@ -43,7 +42,7 @@ define([
     createTopic: function () {
       var title = $("#new-topic-title").val();
       var _this = this;
-      var topic = new TopicModel({title: title});
+      var topic = new TopicModel();
       topic.save({title: title}, {
         success: function(topic) {
           _this.renderItem(topic);
