@@ -38,6 +38,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     daemons (1.1.9)
+    ejs (1.0.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.1)
@@ -76,6 +77,10 @@ GEM
       activesupport (= 3.2.14)
       bundler (~> 1.0)
       railties (= 3.2.14)
+    rails-backbone (0.7.2)
+      coffee-script (~> 2.2.0)
+      ejs (~> 1.0.0)
+      railties (>= 3.1.0)
     railties (3.2.14)
       actionpack (= 3.2.14)
       activesupport (= 3.2.14)
@@ -86,6 +91,8 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    requirejs-rails (0.9.1)
+      railties (>= 3.1.1, < 3.3)
     sass (3.2.10)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -128,8 +135,10 @@ DEPENDENCIES
   jquery-rails
   mysql2 (~> 0.3.13)
   quiet_assets (~> 1.0.2)
-  rabl
+  rabl (~> 0.8.6)
   rails (= 3.2.14)
+  rails-backbone
+  requirejs-rails (~> 0.9.1)
   sass-rails (~> 3.2.3)
   slim-rails (~> 2.0.1)
   thin (~> 1.5.1)

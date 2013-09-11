@@ -1,0 +1,11 @@
+paths:
+  templates: "backbone/templates"
+  router: "backbone/routers/router"
+  models: "backbone/models"
+  views: "backbone/views"
+shim:
+  underscore:
+    exports: '_'
+  backbone:
+    deps: ["underscore", "jquery"]
+    exports: "Backbone"

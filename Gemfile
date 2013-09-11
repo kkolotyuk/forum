@@ -24,9 +24,11 @@ gem 'jquery-rails'
 
 gem 'thin', '~> 1.5.1'
 gem 'quiet_assets', '~> 1.0.2'
-gem "foreigner", "~> 1.5.0"
+gem 'foreigner', '~> 1.5.0'
 
-gem 'rabl'
+gem 'rabl', '~> 0.8.6'
+gem 'rails-backbone'
+gem 'requirejs-rails', '~> 0.9.1'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
