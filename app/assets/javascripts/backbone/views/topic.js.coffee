@@ -5,16 +5,16 @@ define(
       tagName: 'li'
       template: _.template(topicTemplate)
       events:
-        'click .remove-topic': 'remove'
+        'click .remove-topic': 'clear'
 
       initialize: ->
         @listenTo(@model, 'change', @render)
         @listenTo(@model, 'destroy', @remove)
 
       render: ->
-        @$el.html(@.template(topic: @model.toJSON()))
+        @$el.html(@template(@model.toJSON()))
+        @
 
-      remove: ->
-        @model.destroy()
+      clear: -> @model.destroy()
     )
 )

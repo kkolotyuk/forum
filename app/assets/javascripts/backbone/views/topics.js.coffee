@@ -23,18 +23,17 @@ define(
         @listenTo(@collection, 'add', @addOne);
         @collection.fetch()
 
-      render: ->
-        $('header').html(@titleTemplate)
+      render: -> $('header').html(@titleTemplate)
 
       addOne: (topic) ->
         view = new TopicView({model: topic});
-        @$el.find('ul').append(view.render())
+        @$el.find('ul').append(view.render().el)
 
       createTopic: ->
         topic = new TopicModel()
         topic.save(
           { title: $("#new-topic-title").val() },
-          { success: (topic) => @renderItem(topic) }
+          { success: (topic) => @collection.add(topic) }
         )
 
     )
