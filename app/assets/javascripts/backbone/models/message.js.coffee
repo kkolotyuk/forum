@@ -1,5 +1,1 @@
-define(
-  ['backbone'],
-  (Backbone) ->
-    MessageModel = Backbone.Model.extend urlRoot: '/messages'
-)
+define ['backbone'], (Backbone) -> Backbone.Model.extend urlRoot: '/messages'
