@@ -12,23 +12,24 @@ define(
   ($, _, Backbone, TopicsCollection, topicsListTemplate, TopicView, TopicModel, titleTemplate) ->
     Backbone.View.extend(
       el: $("#container")
+      titleTemplate: _.template(titleTemplate, title: 'All Topics')
+      template: _.template(topicsListTemplate)
       events:
         'click .create-topic': 'createTopic'
       model: TopicModel
-      render: ->
-        @$el.html(_.template(topicsListTemplate))
+      initialize: ->
+        @$el.html(@template)
         @collection = new TopicsCollection()
-        topics = @collection.fetch(
-          success: (topics) =>
-            models = topics.models;
-            for model in models
-              @renderItem(model)
-            $('header').html(_.template(titleTemplate, title: 'All Topics'))
-        )
-      renderItem: (topic) ->
-        topicView = new TopicView(model: topic)
-        topicView.render(topic)
-        @$el.find('ul').append(topicView.el)
+        @listenTo(@collection, 'add', @addOne);
+        @collection.fetch()
+
+      render: ->
+        $('header').html(@titleTemplate)
+
+      addOne: (topic) ->
+        view = new TopicView({model: topic});
+        @$el.find('ul').append(view.render())
+
       createTopic: ->
         topic = new TopicModel()
         topic.save(

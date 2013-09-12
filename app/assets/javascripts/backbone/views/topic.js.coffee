@@ -1,14 +1,20 @@
 define(
-  ['jquery', 'underscore', 'backbone', 'text!templates/topic.html', 'models/topic'],
-  ($, _, Backbone, topicTemplate, TopicModel) ->
+  ['jquery', 'underscore', 'backbone', 'text!templates/topic.html'],
+  ($, _, Backbone, topicTemplate) ->
     Backbone.View.extend(
       tagName: 'li'
+      template: _.template(topicTemplate)
       events:
-        'click .remove-topic': 'removeTopic'
-      model: TopicModel
-      render: (topic) ->
-        @$el.append(_.template(topicTemplate, topic: topic.toJSON()))
-      removeTopic: (e) ->
-        @model.destroy(success: (topic) => @el.remove())
+        'click .remove-topic': 'remove'
+
+      initialize: ->
+        @listenTo(@model, 'change', @render)
+        @listenTo(@model, 'destroy', @remove)
+
+      render: ->
+        @$el.html(@.template(topic: @model.toJSON()))
+
+      remove: ->
+        @model.destroy()
     )
 )

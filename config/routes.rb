@@ -1,8 +1,8 @@
 Forum::Application.routes.draw do
 
-  resources :messages, only: [ :create, :update, :destroy ]
-
-  resources :topics, except: [ :new, :edit ]
+  resources :topics, except: [ :new, :edit ] do
+    resources :messages, only: [ :create, :update, :destroy ]
+  end
 
   root :to => "home#index"
   # The priority is based upon order of creation:
