@@ -16,6 +16,6 @@ class MessagesController < ApplicationController
   def destroy
     message = Message.find(params[:id])
     message.destroy
-    render head :no_content
+    render json: {}
   end
 end

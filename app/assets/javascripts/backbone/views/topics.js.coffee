@@ -32,9 +32,8 @@ define(
       createTopic: ->
         topic = new TopicModel()
         topic.save(
-          title: $("#new-topic-title").val()
-          success: (topic) =>
-            @renderItem(topic)
+          { title: $("#new-topic-title").val() },
+          { success: (topic) => @renderItem(topic) }
         )
 
     )

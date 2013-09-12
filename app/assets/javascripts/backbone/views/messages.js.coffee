@@ -29,10 +29,10 @@ define(
 
       createMessage: ->
         text = $('#new-message-text').val()
-        message = new MessageModel()
+        message = new MessageModel(content: text)
         message.save(
-          content: text,
-          success: (msg) => @renderItem(msg)
+          { content: text },
+          { success: (msg) => @renderItem(msg) }
         )
     )
 )
