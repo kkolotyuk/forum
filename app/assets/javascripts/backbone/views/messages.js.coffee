@@ -18,14 +18,16 @@ define(
 
       initialize: ->
         @$el.html(@template)
+        @input = @$el.find('#new-msg-text')
         @listenTo(@model.messages, 'add', @addOne)
         @model.messages.fetch()
 
       addOne: (message) ->
         view = new MessageView({model: message})
         @$el.find('ul').append(view.render().el)
+        @input.val('')
 
       createMessage: ->
-        @model.messages.create(content: $('#new-msg-text').val())
+        @model.messages.create(content: @input.val())
     )
 )
