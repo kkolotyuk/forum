@@ -6,5 +6,13 @@ html
     = requirejs_include_tag "application"
     = csrf_meta_tags
   body
-    #container
-      = yield
+    .container-fluid
+      .row-fluid
+        .span4
+          .page-header
+            h1 Topics
+          #topics
+        .span8
+          .page-header
+            h1 Messages
+          #messages

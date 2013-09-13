@@ -11,7 +11,7 @@ define(
   ],
   ($, _, Backbone, TopicsCollection, topicsListTemplate, TopicView, TopicModel, titleTemplate) ->
     Backbone.View.extend(
-      el: $("#container")
+      el: $("#topics")
       titleTemplate: _.template(titleTemplate, title: 'All Topics')
       template: _.template(topicsListTemplate)
       events:
