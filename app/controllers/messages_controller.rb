@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.new(params[:message])
+    @message = Topic.find(params[:topic_id]).messages.build(params[:message])
     @message.save
     render :show
   end
