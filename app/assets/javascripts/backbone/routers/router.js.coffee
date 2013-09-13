@@ -13,7 +13,7 @@ define(
       app_router.on "route:defaultAction", (actions) -> console.log "No route:", actions
       app_router.on "route:topic", (id) ->
         topic = new TopicModel(id: id)
-        topic.fetch(success: (topic) -> new MessageListView().render(topic))
+        topic.fetch(success: (topic) -> new MessageListView(model: topic).render())
       Backbone.history.start()
 
     initialize: initialize

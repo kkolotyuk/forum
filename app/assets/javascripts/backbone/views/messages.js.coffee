@@ -12,27 +12,20 @@ define(
   ($, _, Backbone, MessageModel, MessagesCollection, MessageView, titleTemplate, messagesListTemplate) ->
     Backbone.View.extend(
       el: $('#container')
+      template: _.template(messagesListTemplate)
       events:
         'click .create-message': 'createMessage'
-      render: (topic) ->
-        @$el.html(_.template(messagesListTemplate))
-        topicJSON = topic.toJSON()
-        @collection = new MessagesCollection(topicJSON.messages)
-        models = @collection.models
-        for model in models
-          @renderItem(model)
-        $('header').html(_.template( titleTemplate, { title: 'Topic ' + topicJSON.title } ))
-      renderItem: (msg) ->
-        msgView = new MessageView(model: msg)
-        msgView.render(msg)
-        @$el.find('ul').append(msgView.el)
+
+      initialize: ->
+        @$el.html(@template)
+        @listenTo(@model.messages, 'add', @addOne)
+        @model.messages.fetch()
+
+      addOne: (message) ->
+        view = new MessageView({model: message})
+        @$el.find('ul').append(view.render().el)
 
       createMessage: ->
-        text = $('#new-message-text').val()
-        message = new MessageModel(content: text)
-        message.save(
-          { content: text },
-          { success: (msg) => @renderItem(msg) }
-        )
+        @model.messages.create(content: $('#new-message-text').val())
     )
 )

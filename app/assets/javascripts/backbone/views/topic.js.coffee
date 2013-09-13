@@ -1,12 +1,13 @@
 define(
-  ['jquery', 'underscore', 'backbone', 'text!templates/topic.html'],
-  ($, _, Backbone, topicTemplate) ->
+  ['jquery', 'underscore', 'backbone', 'text!templates/topic.html', 'views/messages'],
+  ($, _, Backbone, topicTemplate, MessageListView) ->
     Backbone.View.extend(
       tagName: 'li'
       template: _.template(topicTemplate)
       events:
         'click .remove-topic': 'clear'
         'dblclick .view': 'edit'
+        'click .view': 'showMessages'
         'keypress .edit': 'updateOnEnter'
 
       initialize: ->
@@ -24,11 +25,15 @@ define(
         @$el.addClass("editing")
         @input.focus()
 
-      updateOnEnter: (e) ->
-        @close() if e.keyCode == 13
-
-      close: ->
+      update: ->
         @model.save({title: @input.val()})
         @$el.removeClass("editing")
+
+      updateOnEnter: (e) -> @update() if e.keyCode == 13
+
+      showMessages: ->
+        view = new MessageListView(model: @model)
+        view.render()
+
     )
 )

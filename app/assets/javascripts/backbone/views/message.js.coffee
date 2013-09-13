@@ -3,10 +3,32 @@ define(
   ($, _, Backbone, messageTemplate, MessageModel) ->
     Backbone.View.extend(
       tagName: 'li'
+      template: _.template( messageTemplate)
       events:
-        'click .remove-msg': 'removeMessage'
+        'click .remove-msg': 'clear'
+        'dblclick .view': 'edit'
+        'keypress .edit': 'updateOnEnter'
       model: MessageModel
-      render: (message) -> $(@el).append(_.template( messageTemplate, message: message.toJSON()))
-      removeMessage: (e) -> @model.destroy(success: (topic) => @el.remove())
+
+      initialize: ->
+        @listenTo(@model, 'change', @render)
+        @listenTo(@model, 'destroy', @remove)
+
+      render: ->
+        @$el.html(@template(@model.toJSON()))
+        @input = @$('.edit');
+        @
+
+      clear: -> @model.destroy()
+
+      edit: ->
+        @$el.addClass("editing")
+        @input.focus()
+
+      update: ->
+        @model.save({content: @input.val()})
+        @$el.removeClass("editing")
+
+      updateOnEnter: (e) -> @update() if e.keyCode == 13
     )
 )

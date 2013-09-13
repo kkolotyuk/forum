@@ -1,6 +1,10 @@
 class MessagesController < ApplicationController
   respond_to :json
 
+  def index
+    @messages = Topic.find(params[:topic_id]).messages
+  end
+
   def create
     @message = Message.new(params[:message])
     @message.save

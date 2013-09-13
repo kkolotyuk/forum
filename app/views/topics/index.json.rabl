@@ -1,2 +1,2 @@
 collection @topics
-attributes :id, :title
+extends 'topics/show'

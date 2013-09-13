@@ -26,7 +26,7 @@ define(
       render: -> $('header').html(@titleTemplate)
 
       addOne: (topic) ->
-        view = new TopicView({model: topic});
+        view = new TopicView({model: topic})
         @$el.find('ul').append(view.render().el)
 
       createTopic: ->

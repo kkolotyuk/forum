@@ -1,7 +1,7 @@
 Forum::Application.routes.draw do
 
   resources :topics, except: [ :new, :edit ] do
-    resources :messages, only: [ :create, :update, :destroy ]
+    resources :messages, only: [:index, :create, :update, :destroy ]
   end
 
   root :to => "home#index"
