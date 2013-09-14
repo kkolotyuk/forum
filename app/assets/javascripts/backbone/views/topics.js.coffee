@@ -27,7 +27,7 @@ define(
 
       addOne: (topic) ->
         view = new TopicView({model: topic})
-        @$el.find('ul').append(view.render().el)
+        @$el.find('tbody').append(view.render().el)
 
       createTopic: ->
         topic = new TopicModel()

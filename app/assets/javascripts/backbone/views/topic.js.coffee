@@ -2,7 +2,7 @@ define(
   ['jquery', 'underscore', 'backbone', 'text!templates/topic.html', 'views/messages'],
   ($, _, Backbone, topicTemplate, MessageListView) ->
     Backbone.View.extend(
-      tagName: 'li'
+      tagName: 'tr'
       template: _.template(topicTemplate)
       events:
         'click .remove-topic': 'clear'
