@@ -1,5 +1,5 @@
-ul.topics {
-  input[type="text"] {
+#topics {
+  input.edit[type="text"] {
     width: 466px;
     font-size: 24px;
     font-family: inherit;
@@ -15,7 +15,7 @@ ul.topics {
     box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
   }
 
-  li.editing {
+  tr.editing {
     border-bottom: none;
     margin-top: -1px;
     padding: 0;
@@ -30,16 +30,16 @@ ul.topics {
     }
   }
 
-  li.editing:last-child {
+  tr.editing:last-child {
     margin-bottom: -1px;
   }
 
-  li .edit {
+  tr .edit {
     display: none;
   }
 }
 
-ul.messages {
+#messages {
   input[type="text"] {
     width: 466px;
     font-size: 24px;
@@ -56,7 +56,7 @@ ul.messages {
     box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
   }
 
-  li.editing {
+  tr.editing {
     border-bottom: none;
     margin-top: -1px;
     padding: 0;
@@ -71,11 +71,11 @@ ul.messages {
     }
   }
 
-  li.editing:last-child {
+  tr.editing:last-child {
     margin-bottom: -1px;
   }
 
-  li .edit {
+  tr .edit {
     display: none;
   }
 }

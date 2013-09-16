@@ -6,7 +6,7 @@ define(
       template: _.template(topicTemplate)
       events:
         'click .remove-topic': 'clear'
-        'dblclick .view': 'edit'
+        'click .edit-topic': 'edit'
         'click .view': 'showMessages'
         'keypress .edit': 'updateOnEnter'
 
