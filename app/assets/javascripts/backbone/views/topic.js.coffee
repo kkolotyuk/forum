@@ -7,7 +7,7 @@ define(
       events:
         'click .remove-topic': 'clear'
         'click .edit-topic': 'edit'
-        'click .view': 'showMessages'
+        'click': 'showMessages'
         'keypress .edit': 'updateOnEnter'
         'blur .edit': 'update'
 
@@ -33,6 +33,8 @@ define(
       updateOnEnter: (e) -> @update() if e.keyCode == 13
 
       showMessages: ->
+        $('#topics tr').removeClass('info')
+        @$el.addClass("info")
         view = new MessageListView(model: @model)
         view.render()
 

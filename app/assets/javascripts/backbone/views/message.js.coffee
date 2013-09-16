@@ -2,7 +2,7 @@ define(
   ['jquery', 'underscore', 'backbone', 'text!templates/message.html', 'models/message'],
   ($, _, Backbone, messageTemplate, MessageModel) ->
     Backbone.View.extend(
-      tagName: 'li'
+      tagName: 'tr'
       template: _.template( messageTemplate)
       events:
         'click .remove-msg': 'clear'
