@@ -9,6 +9,7 @@ define(
         'click .edit-topic': 'edit'
         'click .view': 'showMessages'
         'keypress .edit': 'updateOnEnter'
+        'blur .edit': 'update'
 
       initialize: ->
         @listenTo(@model, 'change', @render)
