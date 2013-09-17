@@ -5,9 +5,10 @@ define(
       tagName: 'tr'
       template: _.template( messageTemplate)
       events:
-        'click .remove-msg': 'clear'
-        'dblclick .view': 'edit'
+        'click .remove-message': 'clear'
+        'click .edit-message': 'edit'
         'keypress .edit': 'updateOnEnter'
+        'blur .edit': 'update'
       model: MessageModel
 
       initialize: ->
