@@ -33,7 +33,7 @@ define(
         topic = new TopicModel()
         topic.save(
           { title: $("#new-topic-title").val() },
-          { success: (topic) => @collection.add(topic)   }
+          { success: (topic) => @collection.add(topic) }
         )
 
     )

@@ -18,6 +18,7 @@ define(
       initialize: ->
         @listenTo(@model.messages, 'add', @addOne)
         @listenTo(@model.messages, 'reset', @addAll)
+        @listenTo(@model, 'destroy', @remove)
 
       addOne: (message) ->
         console.log(@model.toJSON())

@@ -5,6 +5,6 @@ define(
       urlRoot: '/topics'
       initialize: ->
         @messages = new MessagesCollection
-        @messages.url = "/topics/#{@id}/messages"
+        @messages.url = => "/topics/#{@id}/messages"
     )
 )

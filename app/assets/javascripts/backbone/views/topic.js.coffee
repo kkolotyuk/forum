@@ -7,7 +7,7 @@ define(
       events:
         'click .remove-topic': 'clear'
         'click .edit-topic': 'edit'
-        'click': 'showMessages'
+        'click td:first-child': 'showMessages'
         'keypress .edit': 'updateOnEnter'
         'blur .edit': 'update'
 
