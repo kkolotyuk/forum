@@ -14,6 +14,7 @@ define(
       initialize: ->
         @listenTo(@model, 'change', @render)
         @listenTo(@model, 'destroy', @remove)
+        @messagesView = new MessageListView(model: @model)
 
       render: ->
         @$el.html(@template(@model.toJSON()))
@@ -35,8 +36,7 @@ define(
       showMessages: ->
         $('#topics tr').removeClass('info')
         @$el.addClass("info")
-        view = new MessageListView(model: @model)
-        view.render()
+        $('#messages').html(@messagesView.render().el)
 
     )
 )
