@@ -21,7 +21,6 @@ define(
         @listenTo(@model, 'destroy', @remove)
 
       addOne: (message) ->
-        console.log(@model.toJSON())
         view = new MessageView({model: message})
         @$el.find('tbody').append(view.render().el)
         @input.val('')
