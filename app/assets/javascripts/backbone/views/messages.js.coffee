@@ -6,16 +6,20 @@ define(
     'models/message',
     'models/messages',
     'views/message',
+    'views/messages',
     'text!templates/title.html',
     'text!templates/messages.html'
   ],
-  ($, _, Backbone, MessageModel, MessagesCollection, MessageView, titleTemplate, messagesListTemplate) ->
+  ($, _, Backbone, MessageModel, MessagesCollection, MessageView, MessageListView, titleTemplate, messagesListTemplate) ->
     Backbone.View.extend(
+      el: $("#messages")
       template: _.template(messagesListTemplate)
       events:
         'click .create-message': 'createMessage'
 
-      initialize: ->
+      setTopic: (topic) ->
+        @stopListening()
+        @model = topic
         @listenTo(@model.messages, 'add', @addOne)
         @listenTo(@model.messages, 'reset', @addAll)
         @listenTo(@model, 'destroy', @remove)
@@ -36,5 +40,7 @@ define(
         @
 
       createMessage: -> @model.messages.create(content: @input.val())
+
+      clear: -> @el.empty()
     )
 )

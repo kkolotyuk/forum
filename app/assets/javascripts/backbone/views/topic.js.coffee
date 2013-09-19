@@ -1,6 +1,6 @@
 define(
-  ['jquery', 'underscore', 'backbone', 'text!templates/topic.html', 'views/messages'],
-  ($, _, Backbone, topicTemplate, MessageListView) ->
+  ['jquery', 'underscore', 'backbone', 'text!templates/topic.html'],
+  ($, _, Backbone, topicTemplate) ->
     Backbone.View.extend(
       tagName: 'tr'
       template: _.template(topicTemplate)
@@ -14,7 +14,6 @@ define(
       initialize: ->
         @listenTo(@model, 'change', @render)
         @listenTo(@model, 'destroy', @remove)
-        @messagesView = new MessageListView(model: @model)
 
       render: ->
         @$el.html(@template(@model.toJSON()))
@@ -36,7 +35,8 @@ define(
       showMessages: ->
         $('#topics tr').removeClass('info')
         @$el.addClass("info")
-        $('#messages').html(@messagesView.render().el)
+        @parent.messagesView.setTopic(@model)
+        @parent.messagesView.render()
 
     )
 )
